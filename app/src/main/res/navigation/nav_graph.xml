@@ -34,5 +34,29 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             />
+        <action
+            android:id="@+id/action_SecondFragment_to_TermsFragment"
+            app:destination="@id/TermsFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
     </fragment>
+    <fragment
+        android:id="@+id/TermsFragment"
+        android:name="com.example.passover.TermsFragment"
+        android:label="@string/terms_fragment_label"
+        tools:layout="@layout/fragment_terms">
+
+        <action
+            android:id="@+id/action_TermsFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+
 </navigation>

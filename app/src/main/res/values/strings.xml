@@ -4,6 +4,8 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="terms_fragment_label">Terms Fragment</string>
+    <string name="policy_fragment_label">Policy Fragment</string>
     <string name="next">!</string>
     <string name="previous">Previous</string>
 
