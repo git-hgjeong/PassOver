@@ -2,13 +2,19 @@ package com.example.passover
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.passover.rest.RestResult
+import com.example.passover.rest.RestRetrofit
 import com.google.zxing.integration.android.IntentIntegrator
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,9 +55,28 @@ class MainActivity : AppCompatActivity() {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "취소되었습니다.", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                val qrStr : String  = result.contents;
+                RestRetrofit.getService().saveData(data = qrStr).enqueue( object :
+                    Callback<RestResult> {
+                    override fun onFailure(call: Call<RestResult>, t: Throwable) {
+                        Log.d("debug", "Fail.")
+                        Toast.makeText(applicationContext, "Connect Fail", Toast.LENGTH_LONG).show()
+                    }
+                    override fun onResponse(call: Call<RestResult>, response: Response<RestResult>) {
+                        Log.d("debug", "Success.")
+                        Log.d("debug", response.toString())
+                        if (response.isSuccessful) {
+                            val ret = response.body()
+                            Log.d("debug", ret?.RESULT_MSG)
+                            Toast.makeText(applicationContext, "출석 되었습니다.", Toast.LENGTH_LONG).show()
+                        }else{
+                            Toast.makeText(applicationContext, "출석체크를 실패 하였습니다.", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                })
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
