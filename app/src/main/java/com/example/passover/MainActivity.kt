@@ -11,19 +11,28 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import com.example.passover.appdata.AppConfigData
+import com.example.passover.appdata.AppConfigModel
 import com.example.passover.rest.RestResult
 import com.example.passover.rest.RestRetrofit
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.zxing.integration.android.IntentIntegrator
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val appConfigModel: AppConfigModel by viewModels()
 
     //퍼미션 응답 처리 코드
     private val multiplePermissionsCode = 100
@@ -44,6 +53,17 @@ class MainActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             IntentIntegrator(this).initiateScan();
         }
+
+        appConfigModel.get().observe(this, Observer{
+            if(it == null){
+                Log.d("debug", "Empty Config Data")
+                lifecycleScope.launch(Dispatchers.IO) {
+                    appConfigModel.insert(AppConfigData("N", "N"))
+                }
+            }else{
+                Log.d("debug", it.terms + ", " + it.policy)
+            }
+        })
 /*
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
