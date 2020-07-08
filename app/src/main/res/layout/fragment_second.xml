@@ -25,11 +25,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ToggleButton
                 android:id="@+id/btn1_1"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:text="C" />
+                android:background="@drawable/baseline_check_box_outline_blank_24"
+                android:textOff=""
+                android:textOn="" />
 
             <TextView
                 android:id="@+id/textView1_1"
@@ -55,11 +57,13 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="@+id/LinearLayoutRow1">
 
-            <Button
+            <ToggleButton
                 android:id="@+id/btn2_1"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:text="C" />
+                android:background="@drawable/baseline_check_box_outline_blank_24"
+                android:textOff=""
+                android:textOn="" />
 
             <TextView
                 android:id="@+id/textView2_1"
