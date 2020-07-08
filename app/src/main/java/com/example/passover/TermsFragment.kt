@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 
@@ -25,7 +26,7 @@ class TermsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.btnTermsBack).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btnTermsBack).setOnClickListener {
             findNavController().navigate(R.id.action_TermsFragment_to_SecondFragment)
         }
     }
