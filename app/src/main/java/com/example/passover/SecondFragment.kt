@@ -28,10 +28,10 @@ class SecondFragment : Fragment() {
         view.findViewById<ImageButton>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
-        view.findViewById<Button>(R.id.btn1_2).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btn1_2).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_TermsFragment)
         }
-        view.findViewById<Button>(R.id.btn2_2).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btn2_2).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_PolicyFragment)
         }
     }

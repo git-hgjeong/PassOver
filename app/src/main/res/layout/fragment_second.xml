@@ -40,11 +40,12 @@
                 android:text="이용약관"
                 android:textSize="18sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn1_2"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:text=">" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_chevron_right_24" />
         </LinearLayout>
 
         <LinearLayout
@@ -69,11 +70,12 @@
                 android:text="개인정보처리방침"
                 android:textSize="18sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn2_2"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:text=">" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_chevron_right_24" />
         </LinearLayout>
 
     </LinearLayout>

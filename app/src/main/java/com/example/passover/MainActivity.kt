@@ -10,6 +10,7 @@ import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -118,13 +119,18 @@ class MainActivity : AppCompatActivity() {
                         override fun onResponse(call: Call<RestResult>, response: Response<RestResult>) {
                             Log.d("debug", "Success.")
                             Log.d("debug", response.toString())
+                            val tvToastMsg = TextView(applicationContext)
+                            tvToastMsg.textSize = 26F
                             if (response.isSuccessful) {
                                 val ret = response.body()
                                 Log.d("debug", ret?.RESULT_MSG)
-                                Toast.makeText(applicationContext, "출석 되었습니다.", Toast.LENGTH_LONG).show()
+                                tvToastMsg.text = "출석 되었습니다."
                             }else{
-                                Toast.makeText(applicationContext, "출석체크를 실패 하였습니다.", Toast.LENGTH_LONG).show()
+                                tvToastMsg.text = "출석체크를 실패 하였습니다."
                             }
+                            val toast = Toast.makeText(applicationContext, "", Toast.LENGTH_LONG)
+                            toast.view = tvToastMsg
+                            toast.show()
                         }
                     })
                 }
